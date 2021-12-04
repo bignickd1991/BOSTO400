@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="10.10.10.10" config=" num_encoders=8 num_pwmgens=6 num_stepgens=0" 
+loadrt hm2_eth board_ip="10.10.10.10"                                      #config=" num_encoders=8 num_pwmgens=6 num_stepgens=0" 
 setp    [HMOT](CARD0).pwmgen.pwm_frequency 20000
 setp    [HMOT](CARD0).pwmgen.pdm_frequency 6000000
 setp    [HMOT](CARD0).watchdog.timeout_ns 5000000
@@ -15,6 +15,10 @@ loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
 loadrt classicladder_rt numPhysInputs=15 numPhysOutputs=15 numS32in=10 numS32out=10 numFloatIn=10 numFloatOut=10 numBits=50 numWords=50
 loadrt mux16 names=jogincr,foincr,soincr
+
+#  Set 7I94 pin 41 to false to see 7I89 encoder pins 
+halcmd setp hm2_7i94.0.gpio.041.is_output true
+halcmd setp hm2_7i94.0.gpio.041.out false
 
 addf [HMOT](CARD0).read          servo-thread
 addf motion-command-handler   servo-thread
@@ -32,36 +36,44 @@ addf abs.spindle              servo-thread
 addf lowpass.spindle          servo-thread
 addf [HMOT](CARD0).write         servo-thread
 
-# external output signals
+# external IO signals
 
-# --- SPINDLE_PWM0 ---
-setp    [HMOT](CARD0).pwmgen.05.output-type 1
-net Spindle_PWM0-enable     <=  [HMOT](CARD0).pwmgen.05.enable
-net Spindle_PWM0-value      <=  [HMOT](CARD0).pwmgen.05.value
+#*******************
+# 7i90HD IO Interface for WRC Boards
+#*******************
+#*************WRC1************
 
-# --- SPINDLE_ENABLE1 ---
+# --- SPINDLE_ENABLE1 --- Output
 setp [HMOT](CARD0).gpio.042.is_output true
 net Spindle_Enable1  =>     [HMOT](CARD0).gpio.042.out
 
-# --- SPINDLE_ENABLE0 ---
+# --- SPINDLE_ENABLE0 --- Output
 setp [HMOT](CARD0).gpio.043.is_output true
 net Spindle_Enable0  =>     [HMOT](CARD0).gpio.043.out
 
-# --- DRAWBAR0_DOWN ---
+# --- DRAWBAR0_DOWN --- Output
 setp [HMOT](CARD0).gpio.048.is_output true
 net Drawbar0_Down  =>     [HMOT](CARD0).gpio.048.out
 
-# --- COOLANT-FLOOD ---
+# --- COOLANT-FLOOD --- Output
 setp [HMOT](CARD0).gpio.049.is_output true
 net coolant-flood  =>     [HMOT](CARD0).gpio.049.out
 
-# --- COOLANT-MIST ---
+# --- COOLANT-MIST --- Output
 setp [HMOT](CARD0).gpio.050.is_output true
 net coolant-mist  =>     [HMOT](CARD0).gpio.050.out
 
-# --- CLAMP_ON ---
+#  ---coolant signals---
+
+net coolant-mist      <=  iocontrol.0.coolant-mist
+net coolant-flood     <=  iocontrol.0.coolant-flood
+
+# --- CLAMP_ON --- Output
 setp [HMOT](CARD0).gpio.051.is_output true
 net Clamp_On  =>     [HMOT](CARD0).gpio.051.out
+
+
+
 
 # --- ORIENT_SPINDLE0_OUT ---
 setp [HMOT](CARD0).gpio.052.is_output true
@@ -71,15 +83,28 @@ net Orient_Spindle0_out  =>     [HMOT](CARD0).gpio.052.out
 setp [HMOT](CARD0).gpio.053.is_output true
 net Orient_Spindle0_In  =>     [HMOT](CARD0).gpio.053.out
 
-# external input signals
 
-# --- BOTH-X ---
+
+
+#*************WRC2************
+
+
+
+
+
+
+
+
+
+
+
+# --- Limit BOTH-X ---
 net both-x     <=  [HMOT](CARD0).gpio.044.in
 
-# --- BOTH-Y ---
+# --- Limit BOTH-Y ---
 net both-y     <=  [HMOT](CARD0).gpio.045.in
 
-# --- BOTH-Z ---
+# --- Limit BOTH-Z ---
 net both-z     <=  [HMOT](CARD0).gpio.046.in
 
 # --- HOME-A ---
@@ -138,6 +163,12 @@ net estop-ext     <=  [HMOT](CARD0).gpio.070.in
 
 # --- FEED_HOLD ---
 net Feed_Hold     <=  [HMOT](CARD0).gpio.071.in
+
+
+#*******************
+# 7I83_0 10X DAC for XYZA
+# 7I89 8X Encoder Input Card
+#*******************
 
 #*******************
 #  AXIS X JOINT 0
@@ -343,8 +374,20 @@ net home-a     =>  joint.3.home-sw-in
 net a-neg-limit     =>  joint.3.neg-lim-sw-in
 net a-pos-limit     =>  joint.3.pos-lim-sw-in
 
+
+
 #*******************
-#  SPINDLE
+# 7I83_1 10X DAC for Spindle0 Main & Spindle1 HS
+#*******************
+
+# --- SPINDLE_PWM0 ---
+setp    [HMOT](CARD0).pwmgen.05.output-type 1
+net Spindle_PWM0-enable     <=  [HMOT](CARD0).pwmgen.05.enable
+net Spindle_PWM0-value      <=  [HMOT](CARD0).pwmgen.05.value
+
+
+#*******************
+#  SPINDLE 0 Main
 #*******************
 
 setp   pid.s.Pgain     [SPINDLE_0]P
@@ -419,10 +462,6 @@ net machine-is-on         halui.machine.is-on
 net jog-speed             halui.axis.jog-speed
 net MDI-mode              halui.mode.is-mdi
 
-#  ---coolant signals---
-
-net coolant-mist      <=  iocontrol.0.coolant-mist
-net coolant-flood     <=  iocontrol.0.coolant-flood
 
 #  ---probe signal---
 
@@ -459,6 +498,10 @@ net axis-select-a       =>  axis.a.jog-enable
 net axis-selected-count =>  axis.a.jog-counts
 
 sets selected-jog-incr     0.000000
+
+#*******************
+# 7I73 Panel Interface
+#*******************
 
 # ---feed override signals to mesa encoder - mpg---
 
