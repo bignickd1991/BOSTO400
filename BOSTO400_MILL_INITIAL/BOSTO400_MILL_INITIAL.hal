@@ -45,6 +45,9 @@ net Spindle_Enable1  =>     [HMOT](CARD0).gpio.042.out
 
 # --- SPINDLE_ENABLE0 ---
 setp [HMOT](CARD0).gpio.043.is_output true
+     [HMOT](CARD0).gpio.043.out
+
+
 net Spindle_Enable0  =>     [HMOT](CARD0).gpio.043.out
 
 # --- DRAWBAR0_DOWN ---
@@ -459,7 +462,7 @@ net axis-select-a       =>  axis.a.jog-enable
 net axis-selected-count =>  axis.a.jog-counts
 
 sets selected-jog-incr     0.000000
-
+#**********************************************************************
 # ---feed override signals to mesa encoder - mpg---
 
 net fo-count     <=  [HMOT](CARD0).encoder.07.count
@@ -471,6 +474,13 @@ net fo-count     <=  [HMOT](CARD0).encoder.07.count
     setp halui.feed-override.count-enable true
 net fo-count            =>  halui.feed-override.counts
 
+
+
+
+
+
+
+
 # ---spindle override signals to mesa encoder - mpg---
 
 net so-count     <=  [HMOT](CARD0).encoder.06.count
@@ -481,6 +491,11 @@ net so-count     <=  [HMOT](CARD0).encoder.06.count
     setp halui.spindle.0.override.scale .01
     setp halui.spindle.0.override.count-enable true
 net so-count              =>  halui.spindle.0.override.counts
+
+
+
+
+
 
 #  ---motion control signals---
 

@@ -119,7 +119,7 @@
   <property name="cbmotor_worm" type="string" value="57667"/>
   <property name="centerembededgvcp" type="bool" value="True"/>
   <property name="cl_haluicmds" type="int" value="0"/>
-  <property name="classicladder" type="bool" value="True"/>
+  <property name="classicladder" type="bool" value="False"/>
   <property name="createshortcut" type="bool" value="True"/>
   <property name="createsymlink" type="bool" value="True"/>
   <property name="customhal" type="bool" value="False"/>
@@ -213,9 +213,9 @@
   <property name="hal8i20signames" type="eval" value="[]"/>
   <property name="halanaloginsignames" type="eval" value="[]"/>
   <property name="halencoderinputsignames" type="eval" value="['Unused_Encoder1', 'Unused_Encoder2']"/>
-  <property name="halinputsignames" type="eval" value="['Z_ATC_Height', 'Z_UP', 'Mill_Power_On', 'Low_Lube', 'Spindle_1_Stopped', 'Serco_Overloads_OK', 'Spindle_1_No_Fault', 'Machine_Overloads_Ok', 'Drawbar1_Holder_In', 'Drawbar1_Holder_Out', 'Feed_Hold', 'A_Enabled', 'Drawbar_1_Switch', 'Drawbar_2_Switch', 'Orient_1_Out', 'Orient_1_In', 'Spindle_0-1', 'Spindle0_Stopped', 'Servo_Overloads_OK', 'Spindle0_No_Fault', 'Drawbar0_Holder_In', 'Drawbar0_Holder_Out', 'Spindle_0_1', 'Drawbar0_Switch', 'Drawbar1_Switch', 'Orient0_Out', 'Orient0_In', 'GUARD_OPEN', 'SPINDLE1_DRAWBAR_DOWN', 'WRC2_6_SPARE', 'TRAY_CYCLE_A', 'TRAY_CYCLE_B', 'TRAY_POSITION_1', 'ARM_IN', 'ARM_OUT', 'SPINDLE1_DRAWBAR_UP', 'WRC2_5_SPARE', 'MPG_SELECT1_X', 'MPG_SELECT1_Y', 'MPG_SELECT1_Z', 'MPG_SELECT1_A', 'MPG_SELECT1_B']"/>
+  <property name="halinputsignames" type="eval" value="['Z_ATC_Height', 'Z_UP', 'Mill_Power_On', 'Low_Lube', 'Spindle_1_Stopped', 'Serco_Overloads_OK', 'Spindle_1_No_Fault', 'Machine_Overloads_Ok', 'Drawbar1_Holder_In', 'Drawbar1_Holder_Out', 'Feed_Hold', 'A_Enabled', 'Drawbar_1_Switch', 'Drawbar_2_Switch', 'Orient_1_Out', 'Orient_1_In', 'Spindle_0-1', 'Spindle0_Stopped', 'Servo_Overloads_OK', 'Spindle0_No_Fault', 'Drawbar0_Holder_In', 'Drawbar0_Holder_Out', 'Spindle_0_1', 'Drawbar0_Switch', 'Drawbar1_Switch', 'Orient0_Out', 'Orient0_In', 'GUARD_OPEN', 'SPINDLE1_DRAWBAR_DOWN', 'WRC2_6_SPARE', 'TRAY_CYCLE_A', 'TRAY_CYCLE_B', 'TRAY_POSITION_1', 'ARM_IN', 'ARM_OUT', 'SPINDLE1_DRAWBAR_UP', 'WRC2_5_SPARE', 'MPG_SELECT1_X', 'MPG_SELECT1_Y', 'MPG_SELECT1_Z', 'MPG_SELECT1_A', 'MPG_SELECT1_B', 'DRAWBAR0_UP-SW', 'DRAWBAR0_DOWN-SW', 'IS_ATC_ARM_IN', 'IS_ATC_ARM_OUT']"/>
   <property name="halmuxencodersignames" type="eval" value="[]"/>
-  <property name="haloutputsignames" type="eval" value="['Main_Drawbar_Down', 'Clamp_On', 'Orient_Spindle_1_Out', 'Orient_Spindle_1_In', 'Spindle_Enable0', 'Spindle_Enable1', 'Drawbar0_Down', 'Orient_Spindle0_out', 'Orient_Spindle0_In', 'OUT_TO_LIMIT', 'WRC1_14_SPARE']"/>
+  <property name="haloutputsignames" type="eval" value="['Main_Drawbar_Down', 'Clamp_On', 'Orient_Spindle_1_Out', 'Orient_Spindle_1_In', 'Spindle_Enable0', 'Spindle_Enable1', 'Drawbar0_Down', 'Orient_Spindle0_out', 'Orient_Spindle0_In', 'OUT_TO_LIMIT', 'WRC1_14_SPARE', 'ARM_IN', 'ARM_OUT', 'ATC_ARM_OUT', 'ATC_ARM_IN', 'ATC_SERVO_ON', 'ATC_TRAY_CW', 'ATC_TRAY_CCW', 'DRAWBAR1_DOWN', 'Orient_Spindle0_Out', 'OUT_TO_LIMIT_SW']"/>
   <property name="halpotsignames" type="eval" value="[]"/>
   <property name="halpwmoutputsignames" type="eval" value="['Spindle_PWM2', 'Spindle_PWM1', 'Spindle_PWM0', 'Unused_PWM_Gen1', 'Unused_PWM_Gen2']"/>
   <property name="halresolversignames" type="eval" value="[]"/>
@@ -493,12 +493,12 @@
   <property name="mesa0c3pin20" type="string" value="TRAY_POSITION_1"/>
   <property name="mesa0c3pin20inv" type="bool" value="False"/>
   <property name="mesa0c3pin20type" type="string" value="GPIO Input"/>
-  <property name="mesa0c3pin21" type="string" value="ARM_IN"/>
+  <property name="mesa0c3pin21" type="string" value="Main_Drawbar_Down"/>
   <property name="mesa0c3pin21inv" type="bool" value="False"/>
-  <property name="mesa0c3pin21type" type="string" value="GPIO Input"/>
-  <property name="mesa0c3pin22" type="string" value="ARM_OUT"/>
+  <property name="mesa0c3pin21type" type="string" value="GPIO Output"/>
+  <property name="mesa0c3pin22" type="string" value="Clamp_On"/>
   <property name="mesa0c3pin22inv" type="bool" value="False"/>
-  <property name="mesa0c3pin22type" type="string" value="GPIO Input"/>
+  <property name="mesa0c3pin22type" type="string" value="GPIO Output"/>
   <property name="mesa0c3pin23" type="string" value="GUARD_OPEN"/>
   <property name="mesa0c3pin23inv" type="bool" value="False"/>
   <property name="mesa0c3pin23type" type="string" value="GPIO Input"/>
@@ -528,52 +528,52 @@
   <property name="mesa0c4pin0" type="string" value="Feed_Hold"/>
   <property name="mesa0c4pin0inv" type="bool" value="False"/>
   <property name="mesa0c4pin0type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin1" type="string" value="SPINDLE1_DRAWBAR_UP"/>
+  <property name="mesa0c4pin1" type="string" value="Z_ATC_Height"/>
   <property name="mesa0c4pin10" type="string" value="MPG_SELECT1_A"/>
   <property name="mesa0c4pin10inv" type="bool" value="False"/>
   <property name="mesa0c4pin10type" type="string" value="GPIO Input"/>
   <property name="mesa0c4pin11" type="string" value="MPG_SELECT1_B"/>
   <property name="mesa0c4pin11inv" type="bool" value="False"/>
   <property name="mesa0c4pin11type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin12" type="string" value="unused-input"/>
+  <property name="mesa0c4pin12" type="string" value="Main_Drawbar_Down"/>
   <property name="mesa0c4pin12inv" type="bool" value="False"/>
-  <property name="mesa0c4pin12type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin13" type="string" value="unused-input"/>
+  <property name="mesa0c4pin12type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin13" type="string" value="Clamp_On"/>
   <property name="mesa0c4pin13inv" type="bool" value="False"/>
-  <property name="mesa0c4pin13type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin14" type="string" value="unused-input"/>
+  <property name="mesa0c4pin13type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin14" type="string" value="Orient_Spindle0_Out"/>
   <property name="mesa0c4pin14inv" type="bool" value="False"/>
-  <property name="mesa0c4pin14type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin15" type="string" value="unused-input"/>
+  <property name="mesa0c4pin14type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin15" type="string" value="Orient_Spindle_1_In"/>
   <property name="mesa0c4pin15inv" type="bool" value="False"/>
-  <property name="mesa0c4pin15type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin16" type="string" value="unused-input"/>
+  <property name="mesa0c4pin15type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin16" type="string" value="Spindle_Enable0"/>
   <property name="mesa0c4pin16inv" type="bool" value="False"/>
-  <property name="mesa0c4pin16type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin17" type="string" value="unused-input"/>
+  <property name="mesa0c4pin16type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin17" type="string" value="Spindle_Enable1"/>
   <property name="mesa0c4pin17inv" type="bool" value="False"/>
-  <property name="mesa0c4pin17type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin18" type="string" value="unused-input"/>
+  <property name="mesa0c4pin17type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin18" type="string" value="ARM_IN"/>
   <property name="mesa0c4pin18inv" type="bool" value="False"/>
-  <property name="mesa0c4pin18type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin19" type="string" value="unused-input"/>
+  <property name="mesa0c4pin18type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin19" type="string" value="IS_ATC_ARM_IN"/>
   <property name="mesa0c4pin19inv" type="bool" value="False"/>
   <property name="mesa0c4pin19type" type="string" value="GPIO Input"/>
   <property name="mesa0c4pin1inv" type="bool" value="False"/>
   <property name="mesa0c4pin1type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin2" type="string" value="SPINDLE1_DRAWBAR_DOWN"/>
-  <property name="mesa0c4pin20" type="string" value="unused-input"/>
+  <property name="mesa0c4pin2" type="string" value="Z_UP"/>
+  <property name="mesa0c4pin20" type="string" value="IS_ATC_ARM_OUT"/>
   <property name="mesa0c4pin20inv" type="bool" value="False"/>
   <property name="mesa0c4pin20type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin21" type="string" value="unused-input"/>
+  <property name="mesa0c4pin21" type="string" value="ATC_TRAY_CW"/>
   <property name="mesa0c4pin21inv" type="bool" value="False"/>
-  <property name="mesa0c4pin21type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin22" type="string" value="unused-input"/>
+  <property name="mesa0c4pin21type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin22" type="string" value="OUT_TO_LIMIT_SW"/>
   <property name="mesa0c4pin22inv" type="bool" value="False"/>
-  <property name="mesa0c4pin22type" type="string" value="GPIO Input"/>
-  <property name="mesa0c4pin23" type="string" value="unused-input"/>
+  <property name="mesa0c4pin22type" type="string" value="GPIO Output"/>
+  <property name="mesa0c4pin23" type="string" value="ATC_TRAY_CCW"/>
   <property name="mesa0c4pin23inv" type="bool" value="False"/>
-  <property name="mesa0c4pin23type" type="string" value="GPIO Input"/>
+  <property name="mesa0c4pin23type" type="string" value="GPIO Output"/>
   <property name="mesa0c4pin2inv" type="bool" value="False"/>
   <property name="mesa0c4pin2type" type="string" value="GPIO Input"/>
   <property name="mesa0c4pin3" type="string" value="WRC1_14_SPARE"/>
@@ -4025,7 +4025,7 @@
   <property name="pp3_Opin9" type="string" value="unused-output"/>
   <property name="pp3_Opin9_inv" type="bool" value="False"/>
   <property name="pp3_direction" type="int" value="0"/>
-  <property name="pyvcp" type="bool" value="True"/>
+  <property name="pyvcp" type="bool" value="False"/>
   <property name="pyvcp1" type="bool" value="True"/>
   <property name="pyvcpblank" type="bool" value="False"/>
   <property name="pyvcpconnect" type="bool" value="True"/>

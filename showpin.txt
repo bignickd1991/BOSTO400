@@ -91,6 +91,8 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.7i73.0.3.output-19
     28  bit   IN          FALSE  hm2_7i94.0.7i73.0.3.output-20
     28  bit   IN          FALSE  hm2_7i94.0.7i73.0.3.output-21
+    
+    
     28  bit   IN          FALSE  hm2_7i94.0.7i83.0.0.analogena0
     28  bit   IN          FALSE  hm2_7i94.0.7i83.0.0.analogena1
     28  bit   IN          FALSE  hm2_7i94.0.7i83.0.0.analogena2
@@ -104,6 +106,8 @@ Owner   Type  Dir         Value  Name
     28  float IN              0  hm2_7i94.0.7i83.0.0.analogout4
     28  float IN              0  hm2_7i94.0.7i83.0.0.analogout5
     28  float OUT             0  hm2_7i94.0.7i83.0.0.fieldvoltage
+    
+    
     28  bit   IN          FALSE  hm2_7i94.0.7i83.0.1.analogena0
     28  bit   IN          FALSE  hm2_7i94.0.7i83.0.1.analogena1
     28  bit   IN          FALSE  hm2_7i94.0.7i83.0.1.analogena2
@@ -117,6 +121,8 @@ Owner   Type  Dir         Value  Name
     28  float IN              0  hm2_7i94.0.7i83.0.1.analogout4
     28  float IN              0  hm2_7i94.0.7i83.0.1.analogout5
     28  float OUT             0  hm2_7i94.0.7i83.0.1.fieldvoltage
+    
+    
     28  s32   OUT             0  hm2_7i94.0.7i90.0.2.enc0.count
     28  bit   I/O         FALSE  hm2_7i94.0.7i90.0.2.enc0.index-enable
     28  float OUT             0  hm2_7i94.0.7i90.0.2.enc0.position
@@ -348,6 +354,8 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.7i90.0.2.p3-out-21
     28  bit   IN          FALSE  hm2_7i94.0.7i90.0.2.p3-out-22
     28  bit   IN          FALSE  hm2_7i94.0.7i90.0.2.p3-out-23
+    
+    
     28  float IN            100  hm2_7i94.0.dpll.01.timer-us
     28  float IN            100  hm2_7i94.0.dpll.02.timer-us
     28  float IN            100  hm2_7i94.0.dpll.03.timer-us
@@ -358,6 +366,8 @@ Owner   Type  Dir         Value  Name
     28  u32   IN     0x00400000  hm2_7i94.0.dpll.plimit
     28  u32   OUT    0x00000001  hm2_7i94.0.dpll.prescale
     28  u32   IN     0x000007D0  hm2_7i94.0.dpll.time-const
+    
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.00.count
     28  s32   OUT             0  hm2_7i94.0.encoder.00.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.00.index-enable
@@ -375,6 +385,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.00.reset
     28  float OUT             0  hm2_7i94.0.encoder.00.velocity
     28  float OUT             0  hm2_7i94.0.encoder.00.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.01.count
     28  s32   OUT             0  hm2_7i94.0.encoder.01.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.01.index-enable
@@ -392,6 +403,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.01.reset
     28  float OUT             0  hm2_7i94.0.encoder.01.velocity
     28  float OUT             0  hm2_7i94.0.encoder.01.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.02.count
     28  s32   OUT             0  hm2_7i94.0.encoder.02.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.02.index-enable
@@ -409,6 +421,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.02.reset
     28  float OUT             0  hm2_7i94.0.encoder.02.velocity
     28  float OUT             0  hm2_7i94.0.encoder.02.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.03.count
     28  s32   OUT             0  hm2_7i94.0.encoder.03.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.03.index-enable
@@ -426,6 +439,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.03.reset
     28  float OUT             0  hm2_7i94.0.encoder.03.velocity
     28  float OUT             0  hm2_7i94.0.encoder.03.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.04.count
     28  s32   OUT             0  hm2_7i94.0.encoder.04.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.04.index-enable
@@ -443,6 +457,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.04.reset
     28  float OUT             0  hm2_7i94.0.encoder.04.velocity
     28  float OUT             0  hm2_7i94.0.encoder.04.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.05.count
     28  s32   OUT             0  hm2_7i94.0.encoder.05.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.05.index-enable
@@ -460,6 +475,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.05.reset
     28  float OUT             0  hm2_7i94.0.encoder.05.velocity
     28  float OUT             0  hm2_7i94.0.encoder.05.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.06.count
     28  s32   OUT             0  hm2_7i94.0.encoder.06.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.06.index-enable
@@ -477,6 +493,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.06.reset
     28  float OUT             0  hm2_7i94.0.encoder.06.velocity
     28  float OUT             0  hm2_7i94.0.encoder.06.velocity-rpm
+    
     28  s32   OUT             0  hm2_7i94.0.encoder.07.count
     28  s32   OUT             0  hm2_7i94.0.encoder.07.count-latched
     28  bit   I/O         FALSE  hm2_7i94.0.encoder.07.index-enable
@@ -494,6 +511,7 @@ Owner   Type  Dir         Value  Name
     28  bit   IN          FALSE  hm2_7i94.0.encoder.07.reset
     28  float OUT             0  hm2_7i94.0.encoder.07.velocity
     28  float OUT             0  hm2_7i94.0.encoder.07.velocity-rpm
+    
     28  bit   IN          FALSE  hm2_7i94.0.encoder.hires-timestamp
     28  u32   IN     0x007F2815  hm2_7i94.0.encoder.muxed-sample-frequency
     28  u32   IN     0x00000000  hm2_7i94.0.encoder.muxed-skew
