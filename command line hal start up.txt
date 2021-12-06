@@ -1,0 +1,44 @@
+
+halcmd loadrt hostmot2
+halcmd loadrt hm2_eth board_ip="10.10.10.10"
+
+setp hm2_7i94ping 10.0.watchdog.timeout_ns 5000000
+addf hm2_7i94.0.read servo-thread
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+addf hm2_7i94.0.write servo-thread
+setp hm2_7i94.0.dpll.01.timer-us -50
+
+
+
+
+
+#turns on access to 7I89 encoder board
+halcmd setp hm2_7i94.0.gpio.041.is_output true
+halcmd setp hm2_7i94.0.gpio.041.out false
+
+
+
+
+halcmd show pin
+halcmd show pin hm2
+
+# graphic hal
+halshow
+
+halrun
+show pin hm2_7i94.0.gpio
+
+
+
+
+
+#do not use
+
+#turns on breakout/switched power on 7I89 encoder board
+setp hm2_7i94.0.gpio.013.is_output true
+setp hm2_7i94.0.gpio.013.out false
+
+#turns off breakout/switched power on 7I89 encoder board
+setp hm2_7i94.0.gpio.013.is_output true
+

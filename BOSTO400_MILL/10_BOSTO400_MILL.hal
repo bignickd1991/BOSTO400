@@ -5,9 +5,9 @@ loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
 loadrt hm2_eth board_ip="10.10.10.10"                                      #config=" num_encoders=8 num_pwmgens=6 num_stepgens=0" 
-setp    [HMOT](CARD0).pwmgen.pwm_frequency 20000
-setp    [HMOT](CARD0).pwmgen.pdm_frequency 6000000
-setp    [HMOT](CARD0).watchdog.timeout_ns 5000000
+##setp    [HMOT](CARD0).pwmgen.pwm_frequency 20000
+##setp    [HMOT](CARD0).pwmgen.pdm_frequency 6000000
+##setp    [HMOT](CARD0).watchdog.timeout_ns 5000000
 loadrt pid names=pid.x,pid.y,pid.z,pid.a,pid.s
 loadrt abs names=abs.spindle
 loadrt lowpass names=lowpass.spindle
@@ -16,8 +16,8 @@ loadrt classicladder_rt numPhysInputs=15 numPhysOutputs=15 numS32in=10 numS32out
 loadrt mux16 names=jogincr,foincr,soincr
 
 #  Set 7I94 pin 41 to false to see 7I89 encoder pins 
-halcmd setp hm2_7i94.0.gpio.041.is_output true
-halcmd setp hm2_7i94.0.gpio.041.out false
+setp hm2_7i94.0.gpio.041.is_output true
+setp hm2_7i94.0.gpio.041.out false
 
 addf hm2_7i94.0.read          servo-thread
 addf motion-command-handler   servo-thread
@@ -37,31 +37,32 @@ addf hm2_7i94.0.write         servo-thread
 
 # external IO signals
 
-#*******************
+#-----------------------------------------------------------------------
 # 7i90HD IO Interface for WRC Boards
-#*******************
+#-----------------------------------------------------------------------
+
 #*******************************************************WRC1************
 
 
 # --- SPINDLE_ENABLE1 -HS --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-00.is_output true
-net Spindle_Enable1  =>      hm2_7i94.0.7i90.0.2.p1-out-00.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-00.is_output true
+net Spindle_Enable1  =>      hm2_7i94.0.7i90.0.2.p1-out-00  #.out
 
 # --- SPINDLE_ENABLE0 - MAIN --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-01.is_output true
-net Spindle_Enable0  =>     hm2_7i94.0.7i90.0.2.p1-out-01.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-01.is_output true
+net Spindle_Enable0  =>     hm2_7i94.0.7i90.0.2.p1-out-01   #.out
 
 # --- DRAWBAR0_DOWN -MAIN --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-02.is_output true
-net Drawbar0_Down  =>     hm2_7i94.0.7i90.0.2.p1-out-02.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-02.is_output true
+net Drawbar0_Down  =>     hm2_7i94.0.7i90.0.2.p1-out-02   #.out
 
 # --- COOLANT-FLOOD --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-03.is_output true
-net coolant-flood  =>     hm2_7i94.0.7i90.0.2.p1-out-03.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-03.is_output true
+net coolant-flood  =>     hm2_7i94.0.7i90.0.2.p1-out-03   #.out
 
 # --- COOLANT-MIST --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-04.is_output true
-net coolant-mist  =>     hm2_7i94.0.7i90.0.2.p1-out-04.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-04.is_output true
+net coolant-mist  =>     hm2_7i94.0.7i90.0.2.p1-out-04   #.out
 
 #  ---coolant signals---
 
@@ -69,151 +70,152 @@ net coolant-mist      <=  iocontrol.0.coolant-mist
 net coolant-flood     <=  iocontrol.0.coolant-flood
 
 # --- CLAMP_ON --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-05.is_output true
-net Clamp_On  =>     hm2_7i94.0.7i90.0.2.p1-out-05.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-05.is_output true
+net Clamp_On  =>     hm2_7i94.0.7i90.0.2.p1-out-05   #.out
 
 # --- ATC_ARM_OUT --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-06.is_output true
-net ATC_ARM_OUT  =>     hm2_7i94.0.7i90.0.2.p1-out-06.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-06.is_output true
+net ATC_ARM_OUT  =>     hm2_7i94.0.7i90.0.2.p1-out-06   #.out
 
 # --- ATC_ARM_IN --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-07.is_output true
-net ATC_ARM_IN  =>     hm2_7i94.0.7i90.0.2.p1-out-07.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-07.is_output true
+net ATC_ARM_IN  =>     hm2_7i94.0.7i90.0.2.p1-out-07   #.out
 
 # --- ATC_SERVO_ON --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-08.is_output true
-net ATC_SERVO_ON  =>     hm2_7i94.0.7i90.0.2.p1-out-08.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-08.is_output true
+net ATC_SERVO_ON  =>     hm2_7i94.0.7i90.0.2.p1-out-08   #.out
 
 # --- ATC_TRAY_CW - FORWARD --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-09.is_output true
-net ATC_TRAY_CW  =>     hm2_7i94.0.7i90.0.2.p1-out-09.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-09.is_output true
+net ATC_TRAY_CW  =>     hm2_7i94.0.7i90.0.2.p1-out-09   #.out
 
 # --- ATC_TRAY_CCW - REVERSE--- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-10.is_output true
-net ATC_TRAY_CCW  =>     hm2_7i94.0.7i90.0.2.p1-out-10.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-10.is_output true
+net ATC_TRAY_CCW  =>     hm2_7i94.0.7i90.0.2.p1-out-10   #.out
 
 # --- DRAWBAR1_DOWN - HS--- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-11.is_output true
-net Drawbar0_Down  =>     hm2_7i94.0.7i90.0.2.p1-out-11.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-11.is_output true
+net Drawbar0_Down  =>     hm2_7i94.0.7i90.0.2.p1-out-11   #.out
 
 # --- ORIENT_SPINDLE0_OUT -MAIN--- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-12.is_output true
-net Orient_Spindle0_out  =>     hm2_7i94.0.7i90.0.2.p1-out-12.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-12.is_output true
+net Orient_Spindle0_out  =>     hm2_7i94.0.7i90.0.2.p1-out-12   #.out
 
 # --- ORIENT_SPINDLE0_IN -MAIN--- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-13.is_output true
-net Orient_Spindle0_In  =>     hm2_7i94.0.7i90.0.2.p1-out-13.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-13.is_output true
+net Orient_Spindle0_In  =>     hm2_7i94.0.7i90.0.2.p1-out-13   #.out
 
 # --- WRC1_14_SPARE --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-14.is_output true
-net WRC1_14_SPARE  =>     hm2_7i94.0.7i90.0.2.p1-out-14.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-14.is_output true
+net WRC1_14_SPARE  =>     hm2_7i94.0.7i90.0.2.p1-out-14   #.out
 
 # --- OUT_TO_LIMITSW --- Output
-setp hm2_7i94.0.7i90.0.2.p1-out-15.is_output true
-net WRC1_14_SPARE  =>     hm2_7i94.0.7i90.0.2.p1-out-15.out
+#setp hm2_7i94.0.7i90.0.2.p1-out-15.is_output true
+net WRC1_14_SPARE  =>     hm2_7i94.0.7i90.0.2.p1-out-15   #.out
 
 # --- TRAY_CYCLE_A --- INPUT
-net TRAY_CYCLE_A     <=  hm2_7i94.0.7i90.0.2.p1-in-16.in
+net TRAY_CYCLE_A     <=  hm2_7i94.0.7i90.0.2.p1-in-16   #.in
 
 # --- TRAY_CYCLE_B --- INPUT
-net TRAY_CYCLE_B     <=  hm2_7i94.0.7i90.0.2.p1-in-17.in
+net TRAY_CYCLE_B     <=  hm2_7i94.0.7i90.0.2.p1-in-17   #.in
 
 # --- TRAY_POSITION_1 SENSOR--- INPUT
-net TRAY_POSITION_1     <=  hm2_7i94.0.7i90.0.2.p1-in-18.in
+net TRAY_POSITION_1     <=  hm2_7i94.0.7i90.0.2.p1-in-18   #.in
 
 # --- Z_ATC_HEIGHT SENSOR ---
-net Z_ATC_Height     <=  hm2_7i94.0.7i90.0.2.p1-in-19.in
+net Z_ATC_Height     <=  hm2_7i94.0.7i90.0.2.p1-in-19   #.in
 
 # --- IS_ATC_ARM_IN SENSOR--- INPUT
-net IS_ATC_ARM_IN     <=  hm2_7i94.0.7i90.0.2.p1-in-20.in
+net IS_ATC_ARM_IN     <=  hm2_7i94.0.7i90.0.2.p1-in-20   #.in
 
 # --- IS_ATC_ARM_OUT SENSOR--- INPUT
-net IS_ATC_ARM_OUT     <=  hm2_7i94.0.7i90.0.2.p1-in-21.in
+net IS_ATC_ARM_OUT     <=  hm2_7i94.0.7i90.0.2.p1-in-21   #.in
 
 # --- GUARD_OPEN ---
-net GUARD_OPEN     <=  hm2_7i94.0.7i90.0.2.p1-in-22.in
+net GUARD_OPEN     <=  hm2_7i94.0.7i90.0.2.p1-in-22   #.in
 
 # --- IS_Z_UP SENSOR--- INPUT
-net IS_Z_UP     <=  hm2_7i94.0.7i90.0.2.p1-in-23.in
+net IS_Z_UP     <=  hm2_7i94.0.7i90.0.2.p1-in-23   #.in
 
 
 #*******************************************************WRC2************
 
 # --- MILL_POWER_ON --- INPUT
-net Mill_Power_On     <=  hm2_7i94.0.7i90.0.2.p2-in-00.in
+net Mill_Power_On     <=  hm2_7i94.0.7i90.0.2.p2-in-00   #.in
 
 # --- Limit BOTH-X --- INPUT
-net both-x     <=  hm2_7i94.0.7i90.0.2.p2-in-01.in
+net both-x     <=  hm2_7i94.0.7i90.0.2.p2-in-01   #.in
 
 # --- Limit BOTH-Y --- INPUT
-net both-y     <=  hm2_7i94.0.7i90.0.2.p2-in-02.in
+net both-y     <=  hm2_7i94.0.7i90.0.2.p2-in-02   #.in
 
 # --- Limit BOTH-Z --- INPUT
-net both-z     <=  hm2_7i94.0.7i90.0.2.p2-in-03.in
+net both-z     <=  hm2_7i94.0.7i90.0.2.p2-in-03   #.in
 
 # --- HOME-A --- INPUT
-net home-a     <=  hm2_7i94.0.7i90.0.2.p2-in-04.in
+net home-a     <=  hm2_7i94.0.7i90.0.2.p2-in-04   #.in
 
 # --- HOME-B --- INPUT NOT USED
-net home-b     <=  hm2_7i94.0.7i90.0.2.p2-in-05.in
+net home-b     <=  hm2_7i94.0.7i90.0.2.p2-in-05   #.in
 
 # --- WRC2_6_SPARE --- INPUT
-net WRC2_6_SPARE     <=   hm2_7i94.0.7i90.0.2.p2-in-06.in
+net WRC2_6_SPARE     <=   hm2_7i94.0.7i90.0.2.p2-in-06  # .in
 
 # --- LOW_LUBE --- INPUT
-net Low_Lube     <=  hm2_7i94.0.7i90.0.2.p2-in-07.in
+net Low_Lube     <=  hm2_7i94.0.7i90.0.2.p2-in-07   #.in
 
 # --- SPINDLE0_STOPPED -MAIN--- INPUT
-net Spindle0_Stopped     <=  hm2_7i94.0.7i90.0.2.p2-in-08.in
+net Spindle0_Stopped     <=  hm2_7i94.0.7i90.0.2.p2-in-08   #.in
 
 # --- SERVO_OVERLOADS_OK --- INPUT
-net Servo_Overloads_OK     <=  hm2_7i94.0.7i90.0.2.p2-in-09.in
+net Servo_Overloads_OK     <=  hm2_7i94.0.7i90.0.2.p2-in-09   #.in
 
 # --- SPINDLE0_NO_FAULT -MAIN --- INPUT
-net Spindle0_No_Fault     <=  hm2_7i94.0.7i90.0.2.p2-in-10.in
+net Spindle0_No_Fault     <=  hm2_7i94.0.7i90.0.2.p2-in-10   #.in
 
 # --- MACHINE_OVERLOADS_OK --- INPUT
-net Machine_Overloads_Ok     <=   hm2_7i94.0.7i90.0.2.p2-in-11.in
+net Machine_Overloads_Ok     <=   hm2_7i94.0.7i90.0.2.p2-in-11   #.in
 
 # --- DRAWBAR0_HOLDER_IN -MAIN--- INPUT
-net Drawbar0_Holder_In     <=   hm2_7i94.0.7i90.0.2.p2-in-12.in
+net Drawbar0_Holder_In     <=   hm2_7i94.0.7i90.0.2.p2-in-12   #.in
 
 # --- DRAWBAR0_ISDOWN -MAIN--- INPUT
-net Drawbar0_ISDOWN     <=  hm2_7i94.0.7i90.0.2.p2-in-13.in
+net Drawbar0_ISDOWN     <=  hm2_7i94.0.7i90.0.2.p2-in-13   #.in
 
 # --- FEED_HOLD --- INPUT
-net Feed_Hold     <=  hm2_7i94.0.7i90.0.2.p2-in-14.in
+net Feed_Hold     <=  hm2_7i94.0.7i90.0.2.p2-in-14   #.in
 
 # --- A_ENABLED --- INPUT
-net A_Enabled     <=  hm2_7i94.0.7i90.0.2.p2-in-15.in
+net A_Enabled     <=  hm2_7i94.0.7i90.0.2.p2-in-15   #.in
 
 # --- SPINDLE_0_1 --- INPUT -- WHICH SPINDLE IS ACTIVATED
-net Spindle_0_1     <=  hm2_7i94.0.7i90.0.2.p2-in-16.in
+net Spindle_0_1     <=  hm2_7i94.0.7i90.0.2.p2-in-16   #.in
 
 # --- DRAWBAR0_SWITCH -MAIN--- INPUT
-net Drawbar0_Switch     <=  hm2_7i94.0.7i90.0.2.p2-in-17.in
+net Drawbar0_Switch     <=  hm2_7i94.0.7i90.0.2.p2-in-17   #.in
 
 # --- DRAWBAR1_SWITCH -HS--- INPUT
-net Drawbar1_Switch     <=  hm2_7i94.0.7i90.0.2.p2-in-18.in
+net Drawbar1_Switch     <=  hm2_7i94.0.7i90.0.2.p2-in-18   #.in
 
 # --- DRAWBAR1_ISUP SENSOR -MAIN--- INPUT
-net DRAWBAR1_ISUP     <=  hm2_7i94.0.7i90.0.2.p2-in-19.in
+net DRAWBAR1_ISUP     <=  hm2_7i94.0.7i90.0.2.p2-in-19   #.in
 
 # --- DRAWBAR1_ISDN SENSOR -MAIN--- INPUT
-net DRAWBAR1_ISDN     <=  hm2_7i94.0.7i90.0.2.p2-in-20.in
+net DRAWBAR1_ISDN     <=  hm2_7i94.0.7i90.0.2.p2-in-20   #.in
 
 # --- ORIENT0_ISOUT ---
-net Orient0_ISOut     <=  hm2_7i94.0.7i90.0.2.p2-in-21.in
+net Orient0_ISOut     <=  hm2_7i94.0.7i90.0.2.p2-in-21   #.in
 
 # --- ORIENT0_ISIN ---
-net Orient0_ISIn     <=  hm2_7i94.0.7i90.0.2.p2-in-22.in
+net Orient0_ISIn     <=  hm2_7i94.0.7i90.0.2.p2-in-22   #.in
 
 # --- ESTOP-EXT ---
-net estop-ext     <=  hm2_7i94.0.7i90.0.2.p2-in-23.in
+net estop-ext     <=  hm2_7i94.0.7i90.0.2.p2-in-23   #.in
 
-#***********************************************************************
+
+#-----------------------------------------------------------------------
 # 7I73 Panel Interface
-#***********************************************************************
+#-----------------------------------------------------------------------
 
 # ---feed override signals to mesa encoder - mpg PINS 12-13 ---
 
@@ -241,45 +243,55 @@ net so-count              =>  halui.spindle.0.override.counts
 
 net s1o-count     <=  hm2_7i94.0.7i73.0.3.enc1.count
 
+
+
+
+
+
 # connect spindle overide increments - MPG
 
-    setp halui.spindle.1.override.direct-value false
-    setp halui.spindle.1.override.scale .01
-    setp halui.spindle.1.override.count-enable true
-net s1o-count              =>  halui.spindle.1.override.counts
+#  NEED TO FIGURE OUT HOW TO ADD A 2ND SPINDLE???
+#    setp halui.spindle.1.override.direct-value false
+#    setp halui.spindle.1.override.scale .01
+#   setp halui.spindle.1.override.count-enable true
+#net s1o-count              =>  halui.spindle.1.override.counts
+
+
+
+
 
 # --- SPINDLE0_ON_PBTN - MAIN--- INPUT
-net SPINDLE0_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-00.in
+net SPINDLE0_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-00   #.in
 
 # --- SPINDLE1_ON_PBTN - HS--- INPUT
-net SPINDLE1_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-01.in
+net SPINDLE1_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-01   #.in
 
 # --- COOLANT_ON_PBTN --- INPUT
-net COOLANT_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-02.in
+net COOLANT_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-02   #.in
 
 # --- CLAMP_ON_PBTN --- INPUT PIN 16
-net CLAMP_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-16.in
+net CLAMP_ON_PBTN     <=  hm2_7i94.0.7i73.0.3.input-16   #.in
 
 # --- START_PBTN --- INPUT PIN 17
-net START_PBTN     <=  hm2_7i94.0.7i73.0.3.input-17.in
+net START_PBTN     <=  hm2_7i94.0.7i73.0.3.input-17   #.in
 
 # --- FEEDHOLD_PBTN --- INPUT PIN 18
-net FEEDHOLD_PBTN     <=  hm2_7i94.0.7i73.0.3.input-18.in
+net FEEDHOLD_PBTN     <=  hm2_7i94.0.7i73.0.3.input-18   #.in
 
 # --- X_AXES_PSW --- INPUT PIN 19
-net X_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-19.in
+net X_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-19   #.in
 
 # --- Y_AXES_PSW --- INPUT PIN 20
-net Y_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-20.in
+net Y_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-20   #.in
 
 # --- Z_AXES_PSW --- INPUT PIN 21
-net Z_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-21.in
+net Z_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-21   #.in
 
 # --- A_AXES_PSW --- INPUT PIN 22
-net A_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-22.in
+net A_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-22   #.in
 
 # --- B_AXES_PSW --- INPUT PIN 23
-net B_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-23.in
+net B_AXES_PSW     <=  hm2_7i94.0.7i73.0.3.input-23   #.in
 
 
 #*******************
@@ -310,12 +322,12 @@ net x-output        <=  pid.x.output
 
 # ---PWM Generator signals/setup---
 
-setp   hm2_7i94.0.7i83.0.0.analogout0.output-type 1
-setp   hm2_7i94.0.7i83.0.0.analogout0.scale  [JOINT_0]OUTPUT_SCALE
+#setp   hm2_7i94.0.7i83.0.0.analogout0.output-type 1
+#setp   hm2_7i94.0.7i83.0.0.analogout0.scale  [JOINT_0]OUTPUT_SCALE
 
-net x-output                             => hm2_7i94.0.7i83.0.0.analogout0.value
+net x-output                             => hm2_7i94.0.7i83.0.0.analogout0   #.value
 net x-pos-cmd    joint.0.motor-pos-cmd
-net x-enable      joint.0.amp-enable-out  => hm2_7i94.0.7i83.0.0.analogout0.enable
+#net x-enable      joint.0.amp-enable-out  => hm2_7i94.0.7i83.0.0.analogout0.enable
 
 # ---Encoder feedback signals/setup---
 
@@ -326,7 +338,7 @@ setp    hm2_7i94.0.encoder.00.index-mask 0
 setp    hm2_7i94.0.encoder.00.index-mask-invert 0
 setp    hm2_7i94.0.encoder.00.scale  [JOINT_0]ENCODER_SCALE
 
-net x-pos-fb               <=  hm2_7i94.0.encoder.00.position
+net x-pos-fb               <=  hm2_7i94.0.encoder.00.position   
 net x-vel-fb               <=  hm2_7i94.0.encoder.00.velocity
 net x-pos-fb               =>  joint.0.motor-pos-fb
 net x-index-enable    joint.0.index-enable  <=>  hm2_7i94.0.encoder.00.index-enable
@@ -337,6 +349,7 @@ net x-pos-rawcounts        <=  hm2_7i94.0.encoder.00.rawcounts
 net x-home-sw     =>  joint.0.home-sw-in
 net both-x     =>  joint.0.neg-lim-sw-in
 net both-x     =>  joint.0.pos-lim-sw-in
+
 
 #*******************
 #  AXIS Y JOINT 1
@@ -361,27 +374,27 @@ net y-output        <=  pid.y.output
 
 # ---PWM Generator signals/setup---
 
-setp   [HMOT](CARD0).pwmgen.00.output-type 1
-setp   [HMOT](CARD0).pwmgen.00.scale  [JOINT_1]OUTPUT_SCALE
+#setp   hm2_7i94.0.7i83.0.0.analogout1.output-type 1
+#setp   hm2_7i94.0.7i83.0.0.analogout1.scale  [JOINT_1]OUTPUT_SCALE
 
-net y-output                             => [HMOT](CARD0).pwmgen.00.value
+net y-output                             => hm2_7i94.0.7i83.0.0.analogout1   #.value
 net y-pos-cmd    joint.1.motor-pos-cmd
-net y-enable     joint.1.amp-enable-out  => [HMOT](CARD0).pwmgen.00.enable
+#net y-enable     joint.1.amp-enable-out  => hm2_7i94.0.7i83.0.0.analogout1.enable
 
 # ---Encoder feedback signals/setup---
 
-setp    [HMOT](CARD0).encoder.00.counter-mode 0
-setp    [HMOT](CARD0).encoder.00.filter 1
-setp    [HMOT](CARD0).encoder.00.index-invert 0
-setp    [HMOT](CARD0).encoder.00.index-mask 0
-setp    [HMOT](CARD0).encoder.00.index-mask-invert 0
-setp    [HMOT](CARD0).encoder.00.scale  [JOINT_1]ENCODER_SCALE
+setp    hm2_7i94.0.encoder.01.counter-mode 0
+setp    hm2_7i94.0.encoder.01.filter 1
+setp    hm2_7i94.0.encoder.01.index-invert 0
+setp    hm2_7i94.0.encoder.01.index-mask 0
+setp    hm2_7i94.0.encoder.01.index-mask-invert 0
+setp    hm2_7i94.0.encoder.01.scale  [JOINT_1]ENCODER_SCALE
 
-net y-pos-fb               <=  [HMOT](CARD0).encoder.00.position
-net y-vel-fb               <=  [HMOT](CARD0).encoder.00.velocity
+net y-pos-fb               <=  hm2_7i94.0.encoder.01.position
+net y-vel-fb               <=  hm2_7i94.0.encoder.01.velocity
 net y-pos-fb               =>  joint.1.motor-pos-fb
-net y-index-enable    joint.1.index-enable  <=>  [HMOT](CARD0).encoder.00.index-enable
-net y-pos-rawcounts        <=  [HMOT](CARD0).encoder.00.rawcounts
+net y-index-enable    joint.1.index-enable  <=>  hm2_7i94.0.encoder.01.index-enable
+net y-pos-rawcounts        <=  hm2_7i94.0.encoder.01.rawcounts
 
 # ---setup home / limit switch signals---
 
@@ -412,27 +425,27 @@ net z-output        <=  pid.z.output
 
 # ---PWM Generator signals/setup---
 
-setp   [HMOT](CARD0).pwmgen.03.output-type 1
-setp   [HMOT](CARD0).pwmgen.03.scale  [JOINT_2]OUTPUT_SCALE
+#setp   hm2_7i94.0.7i83.0.0.analogout2.output-type 1
+#setp   hm2_7i94.0.7i83.0.0.analogout2.scale  [JOINT_2]OUTPUT_SCALE
 
-net z-output                             => [HMOT](CARD0).pwmgen.03.value
+net z-output                             => hm2_7i94.0.7i83.0.0.analogout2   #.value
 net z-pos-cmd    joint.2.motor-pos-cmd
-net z-enable     joint.2.amp-enable-out  => [HMOT](CARD0).pwmgen.03.enable
+#net z-enable     joint.2.amp-enable-out  => hm2_7i94.0.7i83.0.0.analogout2.enable
 
 # ---Encoder feedback signals/setup---
 
-setp    [HMOT](CARD0).encoder.03.counter-mode 0
-setp    [HMOT](CARD0).encoder.03.filter 1
-setp    [HMOT](CARD0).encoder.03.index-invert 0
-setp    [HMOT](CARD0).encoder.03.index-mask 0
-setp    [HMOT](CARD0).encoder.03.index-mask-invert 0
-setp    [HMOT](CARD0).encoder.03.scale  [JOINT_2]ENCODER_SCALE
+setp    hm2_7i94.0.encoder.02.counter-mode 0
+setp    hm2_7i94.0.encoder.02.filter 1
+setp    hm2_7i94.0.encoder.02.index-invert 0
+setp    hm2_7i94.0.encoder.02.index-mask 0
+setp    hm2_7i94.0.encoder.02.index-mask-invert 0
+setp    hm2_7i94.0.encoder.02.scale  [JOINT_2]ENCODER_SCALE
 
-net z-pos-fb               <=  [HMOT](CARD0).encoder.03.position
-net z-vel-fb               <=  [HMOT](CARD0).encoder.03.velocity
+net z-pos-fb               <=  hm2_7i94.0.encoder.02.position
+net z-vel-fb               <=  hm2_7i94.0.encoder.02.velocity
 net z-pos-fb               =>  joint.2.motor-pos-fb
-net z-index-enable    joint.2.index-enable  <=>  [HMOT](CARD0).encoder.03.index-enable
-net z-pos-rawcounts        <=  [HMOT](CARD0).encoder.03.rawcounts
+net z-index-enable    joint.2.index-enable  <=>  hm2_7i94.0.encoder.02.index-enable
+net z-pos-rawcounts        <=  hm2_7i94.0.encoder.02.rawcounts
 
 # ---setup home / limit switch signals---
 
@@ -463,27 +476,27 @@ net a-output        <=  pid.a.output
 
 # ---PWM Generator signals/setup---
 
-setp   [HMOT](CARD0).pwmgen.02.output-type 1
-setp   [HMOT](CARD0).pwmgen.02.scale  [JOINT_3]OUTPUT_SCALE
+#setp   hm2_7i94.0.7i83.0.0.analogout3.output-type 1
+#setp   hm2_7i94.0.7i83.0.0.analogout3.scale  [JOINT_3]OUTPUT_SCALE
 
-net a-output                             => [HMOT](CARD0).pwmgen.02.value
+net a-output                             => hm2_7i94.0.7i83.0.0.analogout3   #.value
 net a-pos-cmd    joint.3.motor-pos-cmd
-net a-enable     joint.3.amp-enable-out  => [HMOT](CARD0).pwmgen.02.enable
+#net a-enable     joint.3.amp-enable-out  => hm2_7i94.0.7i83.0.0.analogout3.enable
 
 # ---Encoder feedback signals/setup---
 
-setp    [HMOT](CARD0).encoder.02.counter-mode 0
-setp    [HMOT](CARD0).encoder.02.filter 1
-setp    [HMOT](CARD0).encoder.02.index-invert 0
-setp    [HMOT](CARD0).encoder.02.index-mask 0
-setp    [HMOT](CARD0).encoder.02.index-mask-invert 0
-setp    [HMOT](CARD0).encoder.02.scale  [JOINT_3]ENCODER_SCALE
+setp    hm2_7i94.0.encoder.03.counter-mode 0
+setp    hm2_7i94.0.encoder.03.filter 1
+setp    hm2_7i94.0.encoder.03.index-invert 0
+setp    hm2_7i94.0.encoder.03.index-mask 0
+setp    hm2_7i94.0.encoder.03.index-mask-invert 0
+setp    hm2_7i94.0.encoder.03.scale  [JOINT_3]ENCODER_SCALE
 
-net a-pos-fb               <=  [HMOT](CARD0).encoder.02.position
-net a-vel-fb               <=  [HMOT](CARD0).encoder.02.velocity
+net a-pos-fb               <=  hm2_7i94.0.encoder.03.position
+net a-vel-fb               <=  hm2_7i94.0.encoder.03.velocity
 net a-pos-fb               =>  joint.3.motor-pos-fb
-net a-index-enable    joint.3.index-enable  <=>  [HMOT](CARD0).encoder.02.index-enable
-net a-pos-rawcounts        <=  [HMOT](CARD0).encoder.02.rawcounts
+net a-index-enable    joint.3.index-enable  <=>  hm2_7i94.0.encoder.03.index-enable
+net a-pos-rawcounts        <=  hm2_7i94.0.encoder.03.rawcounts
 
 # ---setup home / limit switch signals---
 
@@ -493,19 +506,17 @@ net a-pos-limit     =>  joint.3.pos-lim-sw-in
 
 
 
-#*******************
+#-----------------------------------------------------------------------
 # 7I83_1 10X DAC for Spindle0 Main & Spindle1 HS
-#*******************
+#-----------------------------------------------------------------------
+#***********************************************************************
+#  SPINDLE 0 Main
+#***********************************************************************
 
 # --- SPINDLE_PWM0 ---
-setp    [HMOT](CARD0).pwmgen.05.output-type 1
-net Spindle_PWM0-enable     <=  [HMOT](CARD0).pwmgen.05.enable
-net Spindle_PWM0-value      <=  [HMOT](CARD0).pwmgen.05.value
-
-
-#*******************
-#  SPINDLE 0 Main
-#*******************
+#setp    hm2_7i94.0.7i83.0.1.analogout0.output-type 1
+#net Spindle_PWM0-enable     <=  hm2_7i94.0.7i83.0.1.analogout0.enable
+net Spindle_PWM0-value      <=  hm2_7i94.0.7i83.0.1.analogout0   #.value
 
 setp   pid.s.Pgain     [SPINDLE_0]P
 setp   pid.s.Igain     [SPINDLE_0]I
@@ -542,6 +553,53 @@ net spindle-index-enable      <=>  spindle.0.index-enable
 # ---Setup spindle at speed signals---
 
 sets spindle-at-speed true
+
+#***********************************************************************
+#  SPINDLE 1 HS
+#***********************************************************************
+#  NEED TO ADD TO THE HALUI FOR SECOND SPINDLE
+
+## --- SPINDLE_PWM1 ---
+##setp    hm2_7i94.0.7i83.0.1.analogout1.output-type 1
+##net Spindle_PWM0-enable     <=  hm2_7i94.0.7i83.0.1.analogout1.enable
+#net Spindle_PWM0-value      <=  hm2_7i94.0.7i83.0.1.analogout1   #.value
+
+#setp   pid.s.Pgain     [SPINDLE_1]P
+#setp   pid.s.Igain     [SPINDLE_1]I
+#setp   pid.s.Dgain     [SPINDLE_1]D
+#setp   pid.s.bias      [SPINDLE_1]BIAS
+#setp   pid.s.FF0       [SPINDLE_1]FF0
+#setp   pid.s.FF1       [SPINDLE_1]FF1
+#setp   pid.s.FF2       [SPINDLE_1]FF2
+#setp   pid.s.deadband  [SPINDLE_1]DEADBAND
+#setp   pid.s.maxoutput [SPINDLE_1]MAX_OUTPUT
+#setp   pid.s.error-previous-target true
+
+#net spindle-index-enable  <=> pid.s.index-enable
+#net spindle-enable        =>  pid.s.enable
+#net spindle-vel-cmd-rpm     => pid.s.command
+#net spindle-vel-fb-rpm      => pid.s.feedback
+#net spindle-output        <=  pid.s.output
+
+## ---setup spindle control signals---
+
+#net spindle-vel-cmd-rps        <=  spindle.1.speed-out-rps
+#net spindle-vel-cmd-rps-abs    <=  spindle.1.speed-out-rps-abs
+#net spindle-vel-cmd-rpm        <=  spindle.1.speed-out
+#net spindle-vel-cmd-rpm-abs    <=  spindle.1.speed-out-abs
+#net spindle-enable             <=  spindle.1.on
+#net spindle-cw                 <=  spindle.1.forward
+#net spindle-ccw                <=  spindle.1.reverse
+#net spindle-brake              <=  spindle.1.brake
+#net spindle-revs               =>  spindle.1.revs
+#net spindle-at-speed           =>  spindle.1.at-speed
+#net spindle-vel-fb-rps         =>  spindle.1.speed-in
+#net spindle-index-enable      <=>  spindle.1.index-enable
+
+## ---Setup spindle at speed signals---
+
+#sets spindle-at-speed true
+#***********************************************************************
 
 
 #******************************
@@ -588,8 +646,6 @@ net probe-in     =>  motion.probe-input
 
 net in-position               <=  motion.in-position
 net machine-is-enabled        <=  motion.motion-enabled
-
-#  ---digital in / out signals---
 
 #  ---estop signals---
 
